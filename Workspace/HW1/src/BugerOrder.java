@@ -14,19 +14,21 @@ public class BugerOrder {
 	
 	
 	public static void main(String[] args) {
-		//declare varaibles to store the qty and prices
-		int burgerOrdered = 0;
-		int friesOrdered = 0;
-		int cokesOrdered= 0;
-		double burgerPrice = 0;
-		double friesPrice = 0;
-		double cokesPrice = 0;
-		double subTotal = 0;
-		double amtDue = 0;
-		double changeDue = 0;
-		double salesTax = 0;
-		double remBal = 0;
-		double payment= 0;
+		
+		//declare variables to store the qty and prices
+		
+		int burgerOrdered = 0;      //number of burgers ordered
+		int friesOrdered = 0;       // number of fries ordered
+		int cokesOrdered= 0;        //number of cokes ordered
+		double burgerPrice = 0;     //total price for burgers ordered
+		double friesPrice = 0;      //total price for fries ordered
+		double cokesPrice = 0;      //total price for cokes ordered
+		double subTotal = 0;        //total price of all three items before tax
+		double amtDue = 0;          //Total price + tax
+		double changeDue = 0;       // Change due to the customer
+		double salesTax = 0;        //Calculated tax 
+		double remBal = 0;          //Balance if amount is not paid in full
+		double payment= 0;          //Amount tendered
 		
 		
 		//create a scanner object
@@ -45,19 +47,13 @@ public class BugerOrder {
 		cokesOrdered = input.nextInt();
 		
 		
-		//Output a message if there are no items ordered
+		//Output a message and exit if there are no items ordered
 		if (burgerOrdered <= 0 && friesOrdered <= 0 && cokesOrdered <= 0 ){
 			System.out.print("You didn't order anything, no payment due");
 		}else{
 			
 		//Otherwise, proceed with the rest of the program
-		//output the quantities ordered
 		
-		System.out.println("Number of Burgers " + burgerOrdered);
-		System.out.println("Number of Fries " + friesOrdered);
-		System.out.println("Number of Cokes " + cokesOrdered);
-		
-
 		//calculate the discount qty is greater than three for any item
 		if (burgerOrdered >= 3){
 			burgerPrice = COST_BURGER * burgerOrdered * DISCOUNT; 
@@ -79,10 +75,11 @@ public class BugerOrder {
 		salesTax = subTotal * TAX;
 		amtDue = subTotal + salesTax;		
 
-		//Make sure the buyer isn't charged anything if they entered 0 for all three items
-		
-		
 		//prompt the user for payment
+		
+		System.out.println("Number of Burgers " + burgerOrdered);
+		System.out.println("Number of Fries " + friesOrdered);
+		System.out.println("Number of Cokes " + cokesOrdered);
 		System.out.printf("\n      subtotal: %5.2f\n", subTotal);
 		System.out.printf("           tax: %5.2f\n", salesTax);
 		System.out.printf("         total: %5.2f\n", amtDue);
@@ -105,7 +102,7 @@ public class BugerOrder {
 		if (payment > amtDue){
 			changeDue = payment - amtDue;
 			System.out.println("\n    We owe you: " + changeDue);
-		}
+		
 			
          //Calculate the breakdown of the change in dollars and coins
 		changeDue = changeDue + .00001;              //prevents rounding errors
@@ -132,6 +129,8 @@ public class BugerOrder {
         System.out.println("      Dimes: " + numDimes);
         System.out.println("    Nickels: " + numNickels);
         System.out.println("    Pennies: " + numPennies);
+        
+		}
         
 		}
 	}
