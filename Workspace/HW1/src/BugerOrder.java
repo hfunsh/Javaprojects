@@ -77,23 +77,23 @@ public class BugerOrder {
 
 		//prompt the user for payment
 		
-		System.out.println("Number of Burgers " + burgerOrdered);
-		System.out.println("Number of Fries " + friesOrdered);
-		System.out.println("Number of Cokes " + cokesOrdered);
-		System.out.printf("\n      subtotal: %5.2f\n", subTotal);
-		System.out.printf("           tax: %5.2f\n", salesTax);
-		System.out.printf("         total: %5.2f\n", amtDue);
+		System.out.println("Number of Burgers........... " + burgerOrdered);
+		System.out.println("Number of Fries............. " + friesOrdered);
+		System.out.println("Number of Cokes............. " + cokesOrdered);
+		System.out.printf("\n                   subtotal: %5.2f\n", subTotal);
+		System.out.printf("                        tax:%5.2f\n", salesTax);
+		System.out.printf("                      total: %5.2f\n", amtDue);
 
 
 		//enter amount tendered
-		System.out.printf("\n  Enter payment: " );
+		System.out.printf("\n              Enter payment: " );
 		payment = input.nextDouble();
 		
 				
 		//Ensure the user doesn't under pay
 		while (payment < amtDue){
 			remBal = amtDue - payment;
-			System.out.printf("  You still owe: " + remBal +"\n   Enter Payment: ");
+			System.out.printf("              You still owe: %5.2f \n              Enter payment: ", + remBal );
 			amtDue = remBal;
 			payment = input.nextDouble();
 			}
@@ -101,7 +101,7 @@ public class BugerOrder {
 		//Calculate change due if applicable
 		if (payment > amtDue){
 			changeDue = payment - amtDue;
-			System.out.println("\n    We owe you: " + changeDue);
+			System.out.printf("\n             Your change is:%5.2f ", + changeDue);
 		
 			
          //Calculate the breakdown of the change in dollars and coins
@@ -122,16 +122,16 @@ public class BugerOrder {
      
      //todo: compute number of nickels
         int numNickels = numPennies/5;
-        numPennies = numPennies % 5;
+        numPennies = Math.round(numPennies) % 5;
      
-        System.out.println("\n     Dollars: " + numDollars);
-        System.out.println("   Quarters: " + numQuarters);
-        System.out.println("      Dimes: " + numDimes);
-        System.out.println("    Nickels: " + numNickels);
-        System.out.println("    Pennies: " + numPennies);
+        System.out.println("\n                    Dollars: " + numDollars);
+        System.out.println("                   Quarters: " + numQuarters);
+        System.out.println("                      Dimes: " + numDimes);
+        System.out.println("                    Nickels: " + numNickels);
+        System.out.println("                    Pennies: " + numPennies);
         
 		}
-        
+        System.out.println("\nEnjoy your meal, thanks!");
 		}
 	}
 
