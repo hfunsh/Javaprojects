@@ -86,6 +86,8 @@ public static void displayTriangle(double x1, double y1, double x2, double y2, d
 	double angleB = oppAngle(sideB, sideA, sideC);
 	double angleC = oppAngle(sideC, sideB, sideA);
 	
+	double oppAngTotal = angleA + angleB + angleC;
+	
 	
 	//use the area method to compute the area 
 	double areaOfTri = areaTri(sideA, sideB, sideC);
@@ -112,12 +114,13 @@ public static void displayTriangle(double x1, double y1, double x2, double y2, d
 	//display the output
 	
 	
-	System.out.printf("          cordinates      length     slope   oppAngle\n");
+	System.out.printf("               cordinates      length        slope     oppAngle\n");
 	
-	System.out.printf("(% 1.1f, % 1.1f) (% 1.1f, % 1.1f)      % 1.2f     % 1.2f  % 9.1f\n" 
-			        + "(% 1.1f, % 1.1f) (% 1.1f, % 1.1f)      % 1.2f     % 1.2f  % 9.1f\n"
-			        + "(% 1.1f, % 1.1f) (% 1.1f, % 1.1f)      % 1.2f     % 1.2f  % 9.1f\n" + "type: " + triType + "\n",
-			        x1,  y1, x2, y2, sideA, slpA, angleA, x2,  y2, x3, y3, sideB, slpB, angleB,  x3,  y3, x1, y1, sideC, slpC, angleC);
+	System.out.printf("(% 1.1f, % 1.1f) (% 1.1f, % 1.1f):      % 3.2f     % 9.2f  % 9.1f\n" 
+			        + "(% 1.1f, % 1.1f) (% 1.1f, % 1.1f):      % 3.2f     % 9.2f  % 9.1f\n"
+			        + "(% 1.1f, % 1.1f) (% 1.1f, % 1.1f):      % 3.2f     % 9.2f  % 9.1f\n" + "                                 =====                   =====\n" 
+			        + "type: " + triType + "                  %9.2f                %9.1f\n" +			        "area: %5.2f sq units\n" + "\n",
+			        x1,  y1, x2, y2, sideA, slpA, angleA, x2,  y2, x3, y3, sideB, slpB, angleB,  x3,  y3, x1, y1, sideC, slpC, angleC, length, oppAngTotal, areaOfTri);
    
 	//System.out.println("Side A= " +  sideA);
 	//System.out.println("Side B= " +  sideB);
@@ -130,7 +133,8 @@ public static void displayTriangle(double x1, double y1, double x2, double y2, d
 		//System.out.println("The answer is");
 		
 		 displayTriangle(1.0, 1.0, -4.0, 4.0, 4.75, 4.5);
-		
+		 displayTriangle(0, 8, 0, 0, 8, 0);
+		 displayTriangle(0, 0, 0, 3, 6, 0);
 
 	}
 
