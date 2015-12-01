@@ -9,13 +9,12 @@ public class Account {
 	private static double annualInterestRate = 0;
 	private Date dateCreated = new Date();
 	
-	
-	
+		
 	//default no arg constructor
 	public Account(){
 		id = 0;
 		balance = 0;
-		annualInterestRate = 0;
+		//annualInterestRate = 0;
 		dateCreated.getTime();
 	}
 	
@@ -23,7 +22,7 @@ public class Account {
 	public Account(int id, double balance){
 		this.id = id;
 		this.balance = balance;
-		annualInterestRate = 0;
+		//annualInterestRate = 0;
 		dateCreated.getTime();
 	}
 	
@@ -49,7 +48,7 @@ public class Account {
 			
 	//get the Monthly Interest rate
 	double getMonthlyInterestRate(){
-		return (annualInterestRate/12)/100;
+		return (annualInterestRate/12);
 	}
 	
 	//get Monthly Interest
@@ -68,8 +67,8 @@ public class Account {
 	}
 		
 	//set the annual interest rate
-	void setAnnualInterestRate(double newAnnualInterestRate){
-		this.annualInterestRate = newAnnualInterestRate;
+	static void setAnnualInterestRate(double newAnnualInterestRate){
+		annualInterestRate = newAnnualInterestRate;
 	}
 		
 	//withdraw from the account
@@ -84,9 +83,7 @@ public class Account {
 		
 	//toString method
 	public String toString(){
-		return "Balance is " + getBalance() + "\n"+
-	            "Monthly Interest Rate is: " + getMonthlyInterestRate() + "\n"+
-				 "Date created is: " + getDateCreated();
+		return "id: " + getId() + ", balance: $" + getBalance() + ", created: " + getDateCreated();
 	}
 	
 	

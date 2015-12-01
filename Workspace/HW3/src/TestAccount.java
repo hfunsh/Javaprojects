@@ -12,7 +12,7 @@ public class TestAccount {
 		//Test the mutator methods
 		act1.setId(1122); //set the id to 12
 		act1.setBalance(20000);//set the balance to 1100
-		act1.setAnnualInterestRate(4.5);
+		act1.setAnnualInterestRate(.12);
 		
 		
 		
