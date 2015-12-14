@@ -1,88 +1,81 @@
-//Bank Class
-
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-
-
 public class Bank
 {
-    private String name;
-	private Account [] myAccount;
-	private static int nextNewCustomer = 0;
+	Account [] myAccounts;
+	int nextNewCustomer;
 
-   //2 argument constructor for Bank:  
-   	public Bank(String name, int arraySize){
-		this.name = name;
-		myAccount = new Account [arraySize];
-		}
-   
-   /*
-    * addAcount: add a reference of an Account to the array myAccounts
-    *            if the array is full, return false, otherwise return true
-    */
-   	//add a reference of an Account to the array myAccounts
-	public boolean addAccount(Account acc)
+	public Bank (int numberCustomers)
 	{
-		//check to see if array is full
-		if(nextNewCustomer > myAccount.length)
-       return false;
-		
-		myAccount[nextNewCustomer++]= acc;
-		return true;
+		myAccounts = new Account[numberCustomers];
+		nextNewCustomer = 0;
 	}
-   
-   
-   /*
-    * processMonthlyEvent: traverse the myAccounts array and get the monthly 
-    *                      interest for the account.  Then deposit it.  
-    */
+	public void addAccount(Account acc)
+	{
+		if (nextNewCustomer < myAccounts.length)
+			myAccounts[nextNewCustomer++] = acc;
+	}
 	public void processMonthlyEvent()
 	{
-      double interest;
 		for (int k=0; k<nextNewCustomer; k++)
-			//find the interest rate for each account in the array using the getMonthlyInterestrate method
-			//call the deposit method to add the interest to the account
-			//for each element in the array: interest = element.getBalance * monthly interest date 
-			//element.deposit(interest)
-      {interest = myAccount[k].getMonthlyInterest();
-      myAccount[k].deposit(interest);}
-			
-      
+			myAccounts[k].monthlyEvent();
 	}
 	
-   /*
-    * findAccount: return the reference of an Account that has the specified
-    *              id.  Return null if not found
-    */
-	public Account findAccount (int  id)
+	public Account findAccount (String name)
 	{
-		
-		for(int i = 0; i < nextNewCustomer; i++){
-			if (id == myAccount[i].getId())
-				return myAccount[i];
-			}
-				      
-      return null; 
-	}
-	
-	public static int getNextNewCustomer(){
-		return nextNewCustomer;
-	}
-	
-	/*
-    * toString(): traverse the myAccounts array and call the Account's toString() 
-    */
-	public String toString()
-	{
-		String str = "Bank: " + name + "\n";
 		for (int k=0; k<nextNewCustomer; k++)
 		{
-        	String entry = myAccount[k].toString();
-	     	str += "" + entry + "\n";
+			if (myAccounts[k].getName().equals(name))
+				return myAccounts[k];
+		}
+		return null; 
+	}
+	/*
+	 *  todo:
+	 *     add:
+	 *        public Account findAccount (String name, int type)
+	 *        public Account findAccount(int id)
+	 */
+	
+	public Account findAccount(String name, int type){
+		
+		for (int k=0; k<nextNewCustomer; k++)
+		{
+			if (myAccounts[k].getName().equals(name) && myAccounts[k].getNumType() == type)
+				return myAccounts[k];
+		}
+		return null; 
+		
+	}
+	
+public Account findAccount(int id){
+		
+		for (int k=0; k<nextNewCustomer; k++)
+		{
+			if (myAccounts[k].getId()== id)
+				return myAccounts[k];
+		}
+		return null; 
+		
+	}
+	
+	
+	
+	
+	public String toString()
+	{
+		String str = String.format("%-30s  %8s %8s %10s\n", "Name", "ID", "Balance", "Type");
+		for (int k=0; k<nextNewCustomer; k++)
+		{
+			String name = myAccounts[k].getName();
+			int id = myAccounts[k].getId();
+			double balance = myAccounts[k].getBalance();
+			String sType = myAccounts[k].getStringType();
+			String entry = String.format("%-30s  %8d %8.2f %10s", name, id, balance, sType);
+			str += entry + "\n";
 		}
 		return str;
 	}
